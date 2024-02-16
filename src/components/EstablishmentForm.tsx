@@ -1,21 +1,15 @@
 import { useState } from 'react';
 import { Button, TextField, Grid } from '@mui/material';
-
-type DataFormType = {
-  code: string;
-  name: string;
-  city: string;
-  street: string;
-};
-
-export type EditDataFormType = DataFormType & { id: number };
-
-type CombinedDataFormType = EditDataFormType | DataFormType;
+import {
+  EstablishmentDto,
+  DataFormType,
+  CombinedDataFormType,
+} from '../dto/establisment.dto';
 
 interface Props {
   onSubmit: (formData: DataFormType) => void;
   onClose: () => void;
-  establishment?: EditDataFormType;
+  establishment?: EstablishmentDto;
   mode: 'add' | 'edit';
 }
 
@@ -103,7 +97,7 @@ const EstablishmentForm: React.FC<Props> = ({
             color='primary'
             style={{ marginRight: '8px' }}
           >
-            {mode === 'edit' ? 'Edit' : 'Add'}
+            Save
           </Button>
           <Button onClick={onClose} variant='contained'>
             Cancel

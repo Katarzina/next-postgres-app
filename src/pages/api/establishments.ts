@@ -5,6 +5,7 @@ import {
   updateEstablishment,
 } from '../../handlers/databaseHandler';
 
+// created by CHATGPT
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse

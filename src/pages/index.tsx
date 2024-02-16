@@ -8,24 +8,22 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutline';
 import { getEstablishments } from '../handlers/databaseHandler';
-import { GetServerSidePropsContext, NextPage } from 'next';
-import { EstablismentDto } from '../api/dto/establisment.dto';
-import EstablishmentForm, {
-  EditDataFormType,
-} from '../components/EstablishmentForm';
+import { NextPage } from 'next';
+import { EstablishmentDto } from '../dto/establisment.dto';
+import EstablishmentForm from '../components/EstablishmentForm';
 import DeleteNotification from '../components/DeleteNotification';
 
 interface Props {
-  establishments: EstablismentDto[];
+  establishments: EstablishmentDto[];
 }
 
 const HomePage: NextPage<Props> = ({ establishments }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [establishmentsState, setEstablishmentsState] =
-    useState<EstablismentDto[]>(establishments);
+    useState<EstablishmentDto[]>(establishments);
   const [editEstablishmentData, setEditEstablishmentData] =
-    useState<null | EditDataFormType>(null);
+    useState<null | EstablishmentDto>(null);
   const [openNotification, setOpenNotification] = useState(false);
 
   const handleCloseModal = () => {
@@ -74,7 +72,7 @@ const HomePage: NextPage<Props> = ({ establishments }) => {
   };
 
   const handleEditEstablishment = async (
-    updatedEstablishmentData: EditDataFormType
+    updatedEstablishmentData: EstablishmentDto
   ) => {
     const data = {
       code: updatedEstablishmentData.code,
@@ -143,7 +141,7 @@ const HomePage: NextPage<Props> = ({ establishments }) => {
   return (
     <Layout>
       <Grid container spacing={3}>
-        {/* Left part */}
+        {/* Left side */}
         <Grid item xs={4}>
           <Grid container spacing={2} alignItems='center'>
             <Grid item xs={9}>
@@ -177,7 +175,7 @@ const HomePage: NextPage<Props> = ({ establishments }) => {
                       label={
                         establishment.name +
                         ' ' +
-                        establishment.street +
+                        establishment.city +
                         ' ' +
                         establishment.street
                       }
@@ -187,7 +185,7 @@ const HomePage: NextPage<Props> = ({ establishments }) => {
             ))}
           </TreeView>
         </Grid>
-        {/* Right part */}
+        {/* Right side */}
         <Grid item xs={8}>
           <Typography variant='h5'>Establishments</Typography>
           {establishmentsState.map((establishment) => {
@@ -196,7 +194,7 @@ const HomePage: NextPage<Props> = ({ establishments }) => {
                 <Typography key={establishment.id}>
                   {establishment.name +
                     ' ' +
-                    establishment.street +
+                    establishment.city +
                     ' ' +
                     establishment.street}
                 </Typography>
@@ -236,7 +234,7 @@ const HomePage: NextPage<Props> = ({ establishments }) => {
             borderRadius: '8px',
             boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
             padding: '20px',
-            maxWidth: '60%',
+            maxWidth: '50%',
           }}
         >
           <h2>{isEditMode ? 'Edit Establishment' : 'Add Establishment'}</h2>
@@ -254,7 +252,7 @@ const HomePage: NextPage<Props> = ({ establishments }) => {
   );
 };
 
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+export const getServerSideProps = async () => {
   const establishments = await getEstablishments();
 
   return {

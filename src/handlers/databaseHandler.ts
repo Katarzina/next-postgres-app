@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client';
-import { DataFormType } from '../components/AddEstablishmentForm';
+import { DataFormType } from '../components/EstablishmentForm';
 
 const prisma = new PrismaClient();
-
+// created by CHATGPT
 export async function getEstablishments() {
   //@ts-ignore
   return await prisma.establishment.findMany();
