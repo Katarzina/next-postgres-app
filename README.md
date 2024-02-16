@@ -1,3 +1,13 @@
+1. Postgres run is under docker - Run docker compose up --build
+2. Go to http://localhost:5050/browser/, login with credentials admin@admin.com - look at file docker-compose.yml
+3. Register server with credentials database establishments - look at file docker-compose.yml
+4. add .env DATABASE_URL="postgresql://user:password@localhost:5432/database?schema=public" and 
+   change user, passwords, host, port, database
+5. npx prisma migrate dev
+6. in terminal run: yarn install
+7. yarn dev
+
+----Next official running documentation
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
