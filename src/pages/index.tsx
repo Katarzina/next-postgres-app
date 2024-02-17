@@ -33,6 +33,7 @@ const HomePage: NextPage<Props> = ({ establishments }) => {
   const handleOpenAddModal = () => {
     setIsEditMode(false);
     setIsModalOpen(true);
+    setEditEstablishmentData(null)
   };
 
   const handleOpenEditModal = (data) => {
@@ -140,12 +141,12 @@ const HomePage: NextPage<Props> = ({ establishments }) => {
 
   return (
     <Layout>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} style={{"padding": '5px'}}>
         {/* Left side */}
         <Grid item xs={4}>
           <Grid container spacing={2} alignItems='center'>
             <Grid item xs={9}>
-              <Typography variant='h5'>Cities</Typography>
+              <Typography variant='h6'>Cities</Typography>
             </Grid>
             <Grid item xs={3} container justifyContent='flex-end'>
               <Button color='primary' onClick={handleOpenAddModal} size='small'>
@@ -187,7 +188,7 @@ const HomePage: NextPage<Props> = ({ establishments }) => {
         </Grid>
         {/* Right side */}
         <Grid item xs={8}>
-          <Typography variant='h5'>Establishments</Typography>
+          <Typography variant='h6'>Establishments</Typography>
           {establishmentsState.map((establishment) => {
             return (
               <Grid key={establishment.id} container alignItems='center'>
