@@ -3,9 +3,9 @@
 3. Register server with credentials database establishments - look at file docker-compose.yml
 4. create .env and add row: DATABASE_URL="postgresql://user:password@localhost:5432/database?schema=public" and
    change user, passwords, host, port, database
-5. npx prisma migrate dev
-6. in terminal run: yarn install
-7. yarn dev
+5. in terminal run: yarn install
+6. npx prisma migrate dev
+8. yarn dev
 
 ----Next official running documentation
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
